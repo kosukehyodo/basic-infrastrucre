@@ -58,7 +58,6 @@ resource "aws_cloudfront_cache_policy" "asset" {
 
 
 resource "aws_cloudfront_origin_access_identity" "asset" {
-    comment = "access-identity-sukipi-bucket.s3.ap-northeast-1.amazonaws.com"
 }
 
 resource "aws_cloudfront_public_key" "asset" {
