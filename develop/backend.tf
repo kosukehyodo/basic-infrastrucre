@@ -7,7 +7,7 @@ terraform {
 }
 
 resource "aws_s3_bucket" "tfstate" {
-  bucket = "sukipi-tfstate" 
+  bucket = "sukipi-tfstate-${var.env}" 
 
   lifecycle {
     prevent_destroy = true
