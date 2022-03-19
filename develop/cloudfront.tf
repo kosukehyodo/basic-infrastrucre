@@ -22,6 +22,7 @@ resource "aws_cloudfront_distribution" "asset" {
     target_origin_id       = aws_s3_bucket.asset.bucket_regional_domain_name
     compress               = true
     viewer_protocol_policy = "allow-all"
+    trusted_key_groups     = [aws_cloudfront_key_group.asset.id]
   }
 
   restrictions {
@@ -36,8 +37,7 @@ resource "aws_cloudfront_distribution" "asset" {
 }
 
 resource "aws_cloudfront_cache_policy" "asset" {
-  name = "Custom-CachingOptimized"
-  # name = "${var.env}-${var.project}-asset"
+  name = "${var.env}-${var.project}-asset"
   default_ttl = 2592000
   min_ttl     = 1
   max_ttl     = 31536000
@@ -59,6 +59,16 @@ resource "aws_cloudfront_cache_policy" "asset" {
   }
 }
 
+
 resource "aws_cloudfront_origin_access_identity" "asset" {
-  comment = "access-identity-sukipi-bucket.s3.ap-northeast-1.amazonaws.com"
+}
+
+resource "aws_cloudfront_public_key" "asset" {
+  encoded_key = file("file/cloudfront/key_pair/public_key.pem")
+  name        = "${var.env}-${var.project}-asset"
+}
+
+resource "aws_cloudfront_key_group" "asset" {
+  items = [aws_cloudfront_public_key.asset.id]
+  name  = "${var.env}-${var.project}-asset"
 }

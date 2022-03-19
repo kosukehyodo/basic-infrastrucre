@@ -1,6 +1,6 @@
 variable "env" {
   type    = string
-  default = "prod"
+  default = "develop"
 }
 
 variable "project" {
