@@ -37,8 +37,7 @@ resource "aws_cloudfront_distribution" "asset" {
 }
 
 resource "aws_cloudfront_cache_policy" "asset" {
-  name = "Custom-CachingOptimized"
-  # name = "${var.env}-${var.project}-asset"
+  name = "${var.env}-${var.project}-asset"
   default_ttl = 2592000
   min_ttl     = 1
   max_ttl     = 31536000
