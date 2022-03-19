@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "sukipi-tfstate"
+    bucket = "sukipi-tfstate-develop"
     key    = "develop.terraform.tfstate"
     region = "ap-northeast-1"
   }
