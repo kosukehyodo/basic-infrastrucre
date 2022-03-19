@@ -7,7 +7,7 @@ terraform {
 }
 
 resource "aws_s3_bucket" "tfstate" {
-  bucket = "sukipi-tfstate" 
+  bucket = "sukipi-tfstate"
 
   lifecycle {
     prevent_destroy = true
@@ -15,8 +15,8 @@ resource "aws_s3_bucket" "tfstate" {
 }
 
 resource "aws_s3_bucket_acl" "tfstate" {
-    bucket = aws_s3_bucket.tfstate.id
-    acl = "private"
+  bucket = aws_s3_bucket.tfstate.id
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_public_access_block" "tfstate" {
@@ -29,11 +29,11 @@ resource "aws_s3_bucket_public_access_block" "tfstate" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "tfstate" {
-    bucket = aws_s3_bucket.tfstate.bucket
+  bucket = aws_s3_bucket.tfstate.bucket
 
-    rule {
-        apply_server_side_encryption_by_default {
-            sse_algorithm = "AES256"
-        }
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
+  }
 }
